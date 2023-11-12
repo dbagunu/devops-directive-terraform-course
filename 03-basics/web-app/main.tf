@@ -4,7 +4,7 @@ terraform {
   backend "s3" {
     bucket         = "devops-directive-tf-state"
     key            = "03-basics/web-app/terraform.tfstate"
-    region         = "us-east-1"
+    region         = "ap-southeast-1"
     dynamodb_table = "terraform-state-locking"
     encrypt        = true
   }
@@ -18,11 +18,11 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-southeast-1"
 }
 
 resource "aws_instance" "instance_1" {
-  ami             = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+  ami             = "ami-03caf91bb3d81b843" # Ubuntu 20.04 LTS // ap-southeast-1
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
@@ -33,7 +33,7 @@ resource "aws_instance" "instance_1" {
 }
 
 resource "aws_instance" "instance_2" {
-  ami             = "ami-011899242bb902164" # Ubuntu 20.04 LTS // us-east-1
+  ami             = "ami-03caf91bb3d81b843" # Ubuntu 20.04 LTS // ap-southeast-1
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.instances.name]
   user_data       = <<-EOF
