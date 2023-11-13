@@ -2,10 +2,10 @@ terraform {
   # Assumes s3 bucket and dynamo DB table already set up
   # See /code/03-basics/aws-backend
   backend "s3" {
-    bucket         = "devops-directive-tfstate-tutorial"
+    bucket         = "devops-directive-tfstate-tutorial3"
     key            = "03-basics/web-app/terraform.tfstate"
     region         = "ap-southeast-1"
-    dynamodb_table = "terraform-state-locking"
+    dynamodb_table = "terraform-state-locking3"
     encrypt        = true
   }
 

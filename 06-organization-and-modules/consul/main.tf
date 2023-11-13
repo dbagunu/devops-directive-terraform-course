@@ -2,23 +2,23 @@ terraform {
   # Assumes s3 bucket and dynamo DB table already set up
   # See /code/03-basics/aws-backend
   backend "s3" {
-    bucket         = "devops-directive-tf-state"
+    bucket         = "devops-directive-tfstate-tutorial3"
     key            = "06-organization-and-modules/consul/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking"
+    region         = "ap-southeast-1"
+    dynamodb_table = "terraform-state-locking3"
     encrypt        = true
   }
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 5.25.0"
     }
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-southeast-1"
 }
 
 ############################################################
@@ -31,6 +31,8 @@ provider "aws" {
 ## REPO: https://github.com/hashicorp/terraform-aws-consul
 ##
 ############################################################
-module "consul" {
-  source = "git@github.com:hashicorp/terraform-aws-consul.git"
+module "consul-starter" {
+  source  = "hashicorp/consul-starter/aws"
+  version = "0.2.0"
+  # insert the 5 required variables here
 }
